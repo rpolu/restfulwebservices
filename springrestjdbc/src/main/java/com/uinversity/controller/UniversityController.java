@@ -1,6 +1,11 @@
 package com.uinversity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +22,20 @@ public class UniversityController {
 	private UniversityService universityService;
 
 	@PostMapping("/save")
-	public String saveUniversity(@RequestBody UniversityModel universityModel) {
+	public ResponseEntity<Void> saveUniversity(@RequestBody UniversityModel universityModel) {
 		universityService.saveUinversity(universityModel);
-		return universityModel.getName();
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+
+	@GetMapping("/getUni/{name}")
+	public UniversityModel getUniversityDetails(@PathVariable("name") String name) {
+		return universityService.getUniversity(name);
+	}
+
+	@DeleteMapping("/deleteUni/{name}")
+	public ResponseEntity<Void> deleteUniversity(@PathVariable("name") String name) {
+		universityService.deleteUinversity(name);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
 }
