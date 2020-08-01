@@ -10,16 +10,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
-		// Cross-site request forgery
+		http.httpBasic().and().
+		authorizeRequests().
+		antMatchers("/account").hasRole("ADMIN").
+		antMatchers("/user/**").hasAnyRole("ADMIN", "USER").
+		and().csrf().disable();
 	}
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("rama").password("mohan").roles("USER");
+		auth.inMemoryAuthentication().withUser("rama").password("mohan").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("anup").password("anup").roles("USER");
+		auth.inMemoryAuthentication().withUser("thulasi").password("thulasi").roles("USER");
+		auth.inMemoryAuthentication().withUser("sujana").password("sujana").roles("USER");
 	}
-
 }
