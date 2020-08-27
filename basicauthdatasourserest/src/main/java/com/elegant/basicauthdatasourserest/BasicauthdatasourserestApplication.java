@@ -1,11 +1,13 @@
-package com.spring.security.jwtsecurity;
+package com.elegant.basicauthdatasourserest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JwtSecurityApplication {
+public class BasicauthdatasourserestApplication {
+
 	public static void main(String[] args) {
-		SpringApplication.run(JwtSecurityApplication.class, args);
+		SpringApplication.run(BasicauthdatasourserestApplication.class, args);
 	}
+
 }
