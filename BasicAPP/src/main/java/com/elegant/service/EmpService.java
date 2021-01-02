@@ -1,10 +1,13 @@
 package com.elegant.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.elegant.NameModel;
 import com.elegnat.model.Employee;
 
 @Service
@@ -39,6 +42,22 @@ public class EmpService {
 		e1.setName("anup");
 		e1.setSalary(9000.89f);
 		return e1;
+	}
+
+	public Map<String, Integer> getOccuers(NameModel nameModel) {
+		Map map=new HashMap<String,Integer>();
+		String name =nameModel.getName();
+		char[] array = name.toCharArray();// R a m a
+		for (char c : array) {
+			int i = 0;
+			for (int j = 0; j < name.length(); j++) {
+				if (c == name.charAt(j)) {
+					i = i + 1;
+				}
+			}
+			map.put("" + c, i);
+		}
+		return map;
 	}
 
 }

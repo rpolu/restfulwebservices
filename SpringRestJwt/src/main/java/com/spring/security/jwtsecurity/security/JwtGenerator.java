@@ -1,15 +1,11 @@
 package com.spring.security.jwtsecurity.security;
-
 import com.spring.security.jwtsecurity.model.JwtUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
-
 @Component
 public class JwtGenerator {
-
-
     public String generate(JwtUser jwtUser) {
 
 
