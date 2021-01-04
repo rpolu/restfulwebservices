@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.elegant.rest.model.Country;
 
-/*
- * It is just a helper class which should be replaced by database implementation.
- * It is not very well written class, it is just used for demonstration.
- */
 @Service
 public class CountryService {
 
